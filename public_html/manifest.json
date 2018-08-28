@@ -4,10 +4,14 @@
 	"manifest_version": 2,
 	"version": "2.0",
 	"homepage_url": "https://github.com/TheOtherRealm",
+	"applications": {
+		"gecko": {
+			"id": "otherlookup@otherrealm.org"
+		}
+	},
 	"icons": {
 		"48": "icons/otherlookup.png"
 	},
-
 	"content_scripts": [
 		{
 			"matches": [
@@ -30,36 +34,5 @@
 		"contextMenus",
 		"<all_urls>",
 		"tabs"
-	],
-	"commands": {
-		"getSelectedPedia": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+1",
-				"linux": "Ctrl+Shift+1",
-				"mac": "Command+Shift+1"
-			},
-			"description": "Look up a highlighted word or phrase in Wikipedia"
-		},
-		"getSelectedTionary": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+2",
-				"linux": "Ctrl+Shift+2",
-				"mac": "Command+Shift+2"
-			},
-			"description": "Look up a highlighted word or phrase in Wiktionary"
-		},
-		"removeSelected": {
-			"suggested_key": {
-				"default": "Ctrl+Shift+3",
-				"linux": "Ctrl+Shift+3",
-				"mac": "Command+Shift+3"
-			},
-			"description": "Hide the iframe"
-		}
-	},
-	"background": {
-		"scripts": [
-			"background.js"
-		]
-	}
+	]
 }
