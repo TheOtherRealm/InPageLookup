@@ -9,5 +9,5 @@ To close the overlay, `click Ctrl+Shift+~` (`Command+Shift+~` on mac) (the key t
 
 This code uses the following open source code:
 
-  jquery-3.3.1
-  jquery-ui-1.10.2
+    jquery-3.3.1
+    jquery-ui-1.10.2
