@@ -1,4 +1,6 @@
 # InPageLookup
+If you just want to use this add-on, go to: https://addons.mozilla.org/en-US/firefox/addon/in-page-lookup/
+
 In Page Lookup is a very basic add-on that lets you look up a word on any page in the same page as you have highlighted.  
 
 To look up a word on Wikipedia – Just highlight the word and click Ctrl+Shift+1 (Command+Shift+1 on mac) and an overlay of the Wikipedia article will appear as an in-page overlay.

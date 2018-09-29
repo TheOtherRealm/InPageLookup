@@ -14,8 +14,6 @@
 var selObj = '';
 selObj = window.getSelection();
 var ctrlDown = false;
-//var x = window.screenX;
-//var y = window.screenY;
 var nOfLookups = 1;
 var activePage='';
 $(document).keydown(function (e) {
@@ -29,11 +27,6 @@ $(document).keydown(function (e) {
 		closeWiki('shift');
 	}
 });
-////This gets the window location
-//function whereIsTheScreen() {
-//    x = window.screenX;
-//    y = window.screenY;
-//};
 var getSelectedPedia = function (command) {
 	selObj = window.getSelection();
 	$('body').append('<div class="wikiAddonDivRap" id="wikiAddonDivRap' + nOfLookups++ + '" style="position: fixed;  top:' + (nOfLookups * 10) + 'px;left:' + (nOfLookups * 10) + 'px"">' +
@@ -47,7 +40,9 @@ var getSelectedPedia = function (command) {
 		$(".wikiAddonDivRap").resizable();
 		$('.removeIconBtn').click(function () {
 			nOfLookups--;
-			$(this).parent().parent().remove();
+			$('body .wikiAddonDivRap').last().remove();
+			console.log($('body .wikiAddonDivRap').last());
+//			$(this).parent().parent().remove();
 		});
 	});
 };
@@ -61,17 +56,12 @@ var getSelectedTionary = function (command) {
 		'</div>');
 	//console.log(nOfLookups);
 	$(function () {
-		$('.wikiAddonDivRap').on('onload', 'ready', 'change', function () {
-			var wikiZIndex = $(this).css('z-index');
-			wikiZIndex++;
-			$(this).css('z-index', wikiZIndex);
-			//console.log($(this).css('z-index'));
-		});
 		$(".wikiAddonDivRap").draggable();
 		$(".wikiAddonDivRap").resizable();
 		$('.removeIconBtn').click(function () {
 			nOfLookups--;
-			$(this).parent().parent().remove();
+			$('.wikiAddonDivRap').last().remove();
+//			$(this).parent().parent().remove();
 		});
 	});
 };
@@ -81,5 +71,5 @@ var removeSelected = function (command) {
 };
 var closeWiki=function () {
 	//console.log($('.wikiAddonDivRap').last());
-	$('.wikiAddonDivRap').last().remove();
+	$('body .wikiAddonDivRap').last().remove();
 };
