@@ -15,7 +15,7 @@ var selObj = '';
 selObj = window.getSelection();
 var ctrlDown = false;
 var nOfLookups = 1;
-var activePage='';
+var activePage = '';
 $(document).keydown(function (e) {
 	if (e.ctrlKey && e.shiftKey && e.which === 49) {
 		getSelectedPedia('ctrl');
@@ -26,6 +26,9 @@ $(document).keydown(function (e) {
 	if (e.ctrlKey && e.shiftKey && e.which === 192) {
 		closeWiki('shift');
 	}
+});
+$(document).bind("click", function (event) {
+	document.getElementById("rmenu").innerHTML="test";
 });
 var getSelectedPedia = function (command) {
 	selObj = window.getSelection();
@@ -69,7 +72,7 @@ var getSelectedTionary = function (command) {
 var removeSelected = function (command) {
 	closeWiki();
 };
-var closeWiki=function () {
+var closeWiki = function () {
 	//console.log($('.wikiAddonDivRap').last());
 	$('body .wikiAddonDivRap').last().remove();
 };
