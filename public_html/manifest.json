@@ -12,6 +12,11 @@
 	"icons": {
 		"48": "icons/otherlookup.png"
 	},
+	"background": {
+		"scripts": [
+			"background.js"
+		]
+	},
 	"content_scripts": [
 		{
 			"matches": [
@@ -22,18 +27,20 @@
 				"/js/jquery-ui.min.js",
 				"/pageMod.js"
 			],
-			"css":[
+			"css": [
 				"css/stylsht.css",
 				"css/jquery-ui.min.css"
 			],
-			"all_frames":true
+			"all_frames": true
 		}
 	],
 	"permissions": [
 		"activeTab",
 		"contextMenus",
 		"<all_urls>",
-		"tabs"
+		"tabs",
+		"menus",
+		"unlimitedStorage"
 	],
 	"commands": {
 		"getSelectedPedia": {
