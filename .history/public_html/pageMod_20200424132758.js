@@ -19,7 +19,7 @@
 	var ctrlDown = false;
 	var nOfLookups = 1;
 	var activePage = '';
-	// var pages = [];
+	var pages = [];
 	$(document).keydown(function (e) {
 		if (e.ctrlKey && e.shiftKey && e.which === 49) {
 			getSelectedPedia('ctrl');
@@ -40,7 +40,7 @@
 			'<a href="#" id="closeWikiBtn"><div type="button" class="btnForTheAddon removeIconBtn btn-large IconBtnForTheAddon" style="padding: 5px; font-size: 25px;font-family: Arial, Helvetica, sans-serif;" id="removeIconBtn"> x </div></a>' +
 			'<iframe id="wikiFrameContent" allow-top-navigation style="" src="https://en.wikipedia.org/wiki/Special:Search/' + selObj + '"></iframe>' +
 			'</div>');
-		// pages.push($(nOfLookups));
+		pages.push($(nOfLookups));
 		$(function () {
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
@@ -60,7 +60,7 @@
 			'<a href="#" id="closeWikiBtn"><div type="button" class="btnForTheAddon removeIconBtn btn-large IconBtnForTheAddon" style="padding: 5px; font-size: 25px;font-family: Arial, Helvetica, sans-serif;" id="removeIconBtn"> x </div></a>' +
 			'<iframe id="wikiFrameContent" allow-top-navigation style="" src="https://en.wiktionary.org/wiki/Special:Search/' + selObj + '"></iframe>' +
 			'</div>');
-		// pages.push($(nOfLookups));
+		pages.push($(nOfLookups));
 		$(function () {
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
@@ -75,17 +75,22 @@
 	$('body').prepend('<div id="wikiWrap" class="wikiWrapper"></div>');
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
-			console.log('75', request, sendResponse);
+			// console.log('75',request.wikiCount);
+
+		});
+	var openWiki = function (request) {
+		if (request.frameId <= 1) {
 			if (request.wiki === "getSelectedPedia") {
 				getSelectedPedia();
 			}
 			if (request.wiki === "getSelectedTionary") {
 				getSelectedTionary();
 			}
+		}
 			if (request.wiki === "closeWiki") {
 				closeWiki();
 			}
-		});
+	}
 	//remove the iframe when the key combinations are pressed or the 'X' button is pressed
 	window.addEventListener("message", closeWiki, false);
 	addEventListener('message', function (e) {

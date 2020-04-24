@@ -64,7 +64,7 @@ var openWiki = function (frameId, wiki) {
 		// let cWin=browser.windows.getCurrent(getWindows);
 		// console.log(cWin);
 		console.log(frameId,tabs);
-		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,frameId:frameId,tabId:tabs[0].id},{frameId:frameId});
+		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,frameId:frameId});
 	});
 };/*
  The click event listener, where we perform the appropriate action given the

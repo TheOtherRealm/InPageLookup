@@ -59,12 +59,12 @@ browser.menus.create({
 	title: "Search Wiktionary",
 	contexts: ["all"]
 }, onCreated);
-var openWiki = function (frameId, wiki) {
+var openWiki = function (tabId, wiki) {
 	browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
 		// let cWin=browser.windows.getCurrent(getWindows);
 		// console.log(cWin);
-		console.log(frameId,tabs);
-		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,frameId:frameId,tabId:tabs[0].id},{frameId:frameId});
+		console.log(tabId,tabs);
+		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,wikiID:UUID()});
 	});
 };/*
  The click event listener, where we perform the appropriate action given the
@@ -74,10 +74,10 @@ var wikipedia = browser.menus.onClicked.addListener((info, tab) => {
 	console.log(info,tab);
 	switch (info.menuItemId) {
 		case "getSelectedPedia":
-			openWiki(info.frameId, 'getSelectedPedia');
+			openWiki(tab.id, 'getSelectedPedia');
 			break;
 		case "getSelectedTionary":
-			openWiki(info.frameId, 'getSelectedTionary');
+			openWiki(tab.id, 'getSelectedTionary');
 			break;
 	}
 });

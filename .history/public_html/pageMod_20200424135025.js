@@ -75,7 +75,11 @@
 	$('body').prepend('<div id="wikiWrap" class="wikiWrapper"></div>');
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
-			console.log('75', request, sendResponse);
+			// console.log('75',request.wikiCount);
+			openWiki(request);
+		});
+	var openWiki = function (request) {
+		if (request.frameId < 1) {
 			if (request.wiki === "getSelectedPedia") {
 				getSelectedPedia();
 			}
@@ -85,7 +89,8 @@
 			if (request.wiki === "closeWiki") {
 				closeWiki();
 			}
-		});
+		}
+	}
 	//remove the iframe when the key combinations are pressed or the 'X' button is pressed
 	window.addEventListener("message", closeWiki, false);
 	addEventListener('message', function (e) {

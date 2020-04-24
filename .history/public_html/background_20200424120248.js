@@ -14,7 +14,7 @@
  */
 /* global browser */
 var wikiCount=1;
-function UUID(){
+function create_UUID(){
 	var dt = new Date().getTime();
 	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 		var r = (dt + Math.random()*16)%16 | 0;
@@ -23,6 +23,7 @@ function UUID(){
 	});
 	return uuid;
 }
+var uuid=create_UUID();
 /*
  Called when the item has been created, or when creation failed due to an error.
  We'll just log success/failure here.
@@ -59,25 +60,23 @@ browser.menus.create({
 	title: "Search Wiktionary",
 	contexts: ["all"]
 }, onCreated);
-var openWiki = function (frameId, wiki) {
+var openWiki = function (tabId, wiki) {
 	browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
 		// let cWin=browser.windows.getCurrent(getWindows);
 		// console.log(cWin);
-		console.log(frameId,tabs);
-		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,frameId:frameId,tabId:tabs[0].id},{frameId:frameId});
+		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,wikiCount:wikiCount++});
 	});
 };/*
  The click event listener, where we perform the appropriate action given the
  ID of the menu item that was clicked.
  */
 var wikipedia = browser.menus.onClicked.addListener((info, tab) => {
-	console.log(info,tab);
 	switch (info.menuItemId) {
 		case "getSelectedPedia":
-			openWiki(info.frameId, 'getSelectedPedia');
+			openWiki(tab.id, 'getSelectedPedia');
 			break;
 		case "getSelectedTionary":
-			openWiki(info.frameId, 'getSelectedTionary');
+			openWiki(tab.id, 'getSelectedTionary');
 			break;
 	}
 });

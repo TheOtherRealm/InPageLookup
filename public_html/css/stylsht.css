@@ -1,6 +1,4 @@
-﻿body {
-}
-.wikiAddonDivRap {
+﻿.wikiAddonDivRap {
 	border: thin solid #C0C0C0;
 	margin: 30px 40px 2px 40px;
 	padding: 0;
@@ -120,4 +118,13 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+@media screen and (max-width: 600px) {
+	.wikiAddonDivRap {
+		border: thin solid #C0C0C0;
+		margin: 5px 10px 2px 5px;
+		width: 85%;
+		height: 90%;
+		float:left;
+	}
 }

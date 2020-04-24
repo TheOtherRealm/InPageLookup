@@ -19,7 +19,7 @@
 	var ctrlDown = false;
 	var nOfLookups = 1;
 	var activePage = '';
-	// var pages = [];
+	var pages = [];
 	$(document).keydown(function (e) {
 		if (e.ctrlKey && e.shiftKey && e.which === 49) {
 			getSelectedPedia('ctrl');
@@ -34,13 +34,13 @@
 	});
 	var getSelectedPedia = function (c) {
 		selObj = window.getSelection();
-		nOfLookups = ++c;
+		nOfLookups=++c;
 		$('.wikiWrapper').append('<div class="wikiAddonDivRap" id="' + nOfLookups + '" style="position: fixed;  top:' + (nOfLookups * 10) + 'px;left:' + (nOfLookups * 10) + 'px"">' +
 			'<div class="btnForTheAddon btn-large IconBtnForTheAddon" type="button" style="padding: 5px;font-family: Arial, Helvetica, sans-serif; font-size: 30px;" id="moveIconBtn"> + </div>' +
 			'<a href="#" id="closeWikiBtn"><div type="button" class="btnForTheAddon removeIconBtn btn-large IconBtnForTheAddon" style="padding: 5px; font-size: 25px;font-family: Arial, Helvetica, sans-serif;" id="removeIconBtn"> x </div></a>' +
 			'<iframe id="wikiFrameContent" allow-top-navigation style="" src="https://en.wikipedia.org/wiki/Special:Search/' + selObj + '"></iframe>' +
 			'</div>');
-		// pages.push($(nOfLookups));
+		pages.push($(nOfLookups));
 		$(function () {
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
@@ -60,7 +60,7 @@
 			'<a href="#" id="closeWikiBtn"><div type="button" class="btnForTheAddon removeIconBtn btn-large IconBtnForTheAddon" style="padding: 5px; font-size: 25px;font-family: Arial, Helvetica, sans-serif;" id="removeIconBtn"> x </div></a>' +
 			'<iframe id="wikiFrameContent" allow-top-navigation style="" src="https://en.wiktionary.org/wiki/Special:Search/' + selObj + '"></iframe>' +
 			'</div>');
-		// pages.push($(nOfLookups));
+		pages.push($(nOfLookups));
 		$(function () {
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
@@ -75,7 +75,11 @@
 	$('body').prepend('<div id="wikiWrap" class="wikiWrapper"></div>');
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
-			console.log('75', request, sendResponse);
+			// console.log('75',request.wikiCount);
+			
+		});
+		var openWiki=function(request){
+			if(request.frameId<=1){
 			if (request.wiki === "getSelectedPedia") {
 				getSelectedPedia();
 			}
@@ -85,11 +89,12 @@
 			if (request.wiki === "closeWiki") {
 				closeWiki();
 			}
-		});
+		}
+		}
 	//remove the iframe when the key combinations are pressed or the 'X' button is pressed
 	window.addEventListener("message", closeWiki, false);
-	addEventListener('message', function (e) {
-		if (e.data === 'closeWiki') {
+	addEventListener('message',function(e){
+		if(e.data==='closeWiki'){
 			closeWiki();
 		}
 	});
@@ -99,7 +104,7 @@
 	var closeWiki = function (c) {
 		// console.log( "$('.wikiWrapper>*').length="+$('.wikiWrapper>*').length);
 		if ($('.wikiWrapper>*').length <= 0) {
-			parent.postMessage('closeWiki', '*');
+			parent.postMessage('closeWiki','*');
 		} else {
 			$('.wikiWrapper>*').remove();
 			nOfLookups--;

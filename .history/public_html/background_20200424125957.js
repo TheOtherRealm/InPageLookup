@@ -59,12 +59,12 @@ browser.menus.create({
 	title: "Search Wiktionary",
 	contexts: ["all"]
 }, onCreated);
-var openWiki = function (frameId, wiki) {
+var openWiki = function (info.frameId, wiki) {
 	browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
 		// let cWin=browser.windows.getCurrent(getWindows);
 		// console.log(cWin);
-		console.log(frameId,tabs);
-		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,frameId:frameId,tabId:tabs[0].id},{frameId:frameId});
+		console.log(info.frameId,tabs);
+		browser.tabs.sendMessage(info.frameId, {wiki: wiki,wikiID:UUID()});
 	});
 };/*
  The click event listener, where we perform the appropriate action given the
