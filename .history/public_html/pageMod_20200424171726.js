@@ -70,7 +70,6 @@
 		});
 	};
 	$('body').prepend('<div id="wikiWrap" class="wikiWrapper"></div>');
-	//handle menu button pressing
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
 			console.log('75', request, sendResponse);
@@ -92,6 +91,7 @@
 		}
 	});
 	var closeWiki = function (c) {
+		// console.log( "$('.wikiWrapper>*').length="+$('.wikiWrapper>*').length);
 		if ($('.wikiWrapper>*').length <= 0) {
 			parent.postMessage('closeWiki', '*');
 		} else {

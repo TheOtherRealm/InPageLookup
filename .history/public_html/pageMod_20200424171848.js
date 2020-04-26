@@ -92,6 +92,7 @@
 		}
 	});
 	var closeWiki = function (c) {
+		// console.log( "$('.wikiWrapper>*').length="+$('.wikiWrapper>*').length);
 		if ($('.wikiWrapper>*').length <= 0) {
 			parent.postMessage('closeWiki', '*');
 		} else {

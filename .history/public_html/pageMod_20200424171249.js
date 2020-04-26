@@ -16,7 +16,8 @@
 (function () {
 	var selObj = '';
 	selObj = window.getSelection();
-	var nOfLookups = 0;
+	var nOfLookups = 1;
+	var nOfLookups=0;
 	$(document).keydown(function (e) {
 		if (e.ctrlKey && e.shiftKey && e.which === 49) {
 			getSelectedPedia('ctrl');
@@ -70,7 +71,6 @@
 		});
 	};
 	$('body').prepend('<div id="wikiWrap" class="wikiWrapper"></div>');
-	//handle menu button pressing
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
 			console.log('75', request, sendResponse);
@@ -91,7 +91,11 @@
 			closeWiki();
 		}
 	});
+	// $('#closeWikiBtn').on('click','touch',function(){
+	// 	$(this).parent.remove();
+	// });
 	var closeWiki = function (c) {
+		// console.log( "$('.wikiWrapper>*').length="+$('.wikiWrapper>*').length);
 		if ($('.wikiWrapper>*').length <= 0) {
 			parent.postMessage('closeWiki', '*');
 		} else {

@@ -23,6 +23,10 @@ function UUID(){
 	});
 	return uuid;
 }
+/*
+ Called when the item has been created, or when creation failed due to an error.
+ We'll just log success/failure here.
+ */
 function onCreated() {
 	if (browser.runtime.lastError) {
 		console.log(`Error: ${browser.runtime.lastError}`);
@@ -30,12 +34,21 @@ function onCreated() {
 		console.log("Item created successfully");
 	}
 }
+/*
+ Called when the item has been removed.
+ */
 function onRemoved() {
 	console.log("Item removed successfully");
 }
+/*
+ Called when there was an error.
+ */
 function onError(error) {
 	console.log(`Error: ${error}`);
 }
+/*
+ Create all the context menu items.
+ */
 browser.menus.create({
 	id: "getSelectedPedia",
 	title: "Search Wikipedia",
