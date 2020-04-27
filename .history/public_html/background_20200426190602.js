@@ -13,9 +13,7 @@
  <http://www.gnu.org/licenses/>.
  */
 /* global browser */
-/** 
- * Create event listeners to log things happening
- */
+var wikiCount=1;
 function onCreated() {
 	if (browser.runtime.lastError) {
 		console.log(`Error: ${browser.runtime.lastError}`);

@@ -19,10 +19,10 @@
 	var nOfLookups = 0;
 	$(document).keydown(function (e) {
 		if (e.ctrlKey && e.shiftKey && e.which === 49) {
-			getSelectedPedia();
+			getSelectedPedia('ctrl');
 		}
 		if (e.ctrlKey && e.shiftKey && e.which === 50) {
-			getSelectedTionary();
+			getSelectedTionary('alt');
 		}
 		if (e.ctrlKey && e.shiftKey && e.which === 192) {
 			closeWiki();
@@ -42,6 +42,8 @@
 			$('.removeIconBtn').click(function () {
 				nOfLookups--;
 				closeWiki();
+				// $('body .wikiAddonDivRap').last().remove();
+				// console.log($('body .wikiAddonDivRap').last());
 			});
 		});
 	};
@@ -53,13 +55,16 @@
 			'<a href="#" id="closeWikiBtn"><div type="button" class="btnForTheAddon removeIconBtn btn-large IconBtnForTheAddon" style="padding: 5px; font-size: 25px;font-family: Arial, Helvetica, sans-serif;" id="removeIconBtn"> x </div></a>' +
 			'<iframe id="wikiFrameContent" allow-top-navigation style="" src="https://en.wiktionary.org/wiki/Special:Search/' + selObj + '"></iframe>' +
 			'</div>');
+		// pages.push($(nOfLookups));
 		$(function () {
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
 			$('.removeIconBtn').click(function () {
 				nOfLookups--;
 				closeWiki();
+				// $('.wikiAddonDivRap').last().remove();
 			});
+			// console.log( "$('.wikiWrapper>*').length="+$('.wikiWrapper>*').length);
 		});
 	};
 	$('body').prepend('<div id="wikiWrap" class="wikiWrapper"></div>');

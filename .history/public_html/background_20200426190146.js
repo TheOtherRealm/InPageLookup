@@ -13,9 +13,7 @@
  <http://www.gnu.org/licenses/>.
  */
 /* global browser */
-/** 
- * Create event listeners to log things happening
- */
+var wikiCount=1;
 function onCreated() {
 	if (browser.runtime.lastError) {
 		console.log(`Error: ${browser.runtime.lastError}`);
@@ -29,9 +27,6 @@ function onRemoved() {
 function onError(error) {
 	console.log(`Error: ${error}`);
 }
-/**
- * Create the menu items
- */
 browser.menus.create({
 	id: "getSelectedPedia",
 	title: "Search Wikipedia",
@@ -42,16 +37,13 @@ browser.menus.create({
 	title: "Search Wiktionary",
 	contexts: ["all"]
 }, onCreated);
-/**
- * Give actions to menu items so that they create the iframes and pass relevent data to the page
- */
 var openWiki = function (frameId, wiki) {
 	browser.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
 		browser.tabs.sendMessage(tabs[0].id, {wiki: wiki,frameId:frameId,tabId:tabs[0].id},{frameId:frameId});
 	});
-};
-/** 
- * The click event listener, where we perform the appropriate action given the ID of the menu item that was clicked.
+};/*
+ The click event listener, where we perform the appropriate action given the
+ ID of the menu item that was clicked.
  */
 var wikipedia = browser.menus.onClicked.addListener((info, tab) => {
 	console.log(info,tab);

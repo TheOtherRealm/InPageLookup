@@ -14,7 +14,7 @@
  */
 /* global browser */
 /** 
- * Create event listeners to log things happening
+ * Create event listeners
  */
 function onCreated() {
 	if (browser.runtime.lastError) {

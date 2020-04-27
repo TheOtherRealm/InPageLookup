@@ -19,10 +19,10 @@
 	var nOfLookups = 0;
 	$(document).keydown(function (e) {
 		if (e.ctrlKey && e.shiftKey && e.which === 49) {
-			getSelectedPedia();
+			getSelectedPedia('ctrl');
 		}
 		if (e.ctrlKey && e.shiftKey && e.which === 50) {
-			getSelectedTionary();
+			getSelectedTionary('alt');
 		}
 		if (e.ctrlKey && e.shiftKey && e.which === 192) {
 			closeWiki();
