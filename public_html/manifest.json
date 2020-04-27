@@ -9,6 +9,11 @@
 			"id": "otherlookup@otherrealm.org"
 		}
 	},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "otherlookup@otherrealm.org"
+		}
+	},
 	"icons": {
 		"48": "icons/otherlookup.png"
 	},
@@ -37,13 +42,14 @@
 	"options_ui": {
 		"page": "html/options.html",
 		"browser_style": true
-	  },
+	},
 	"permissions": [
 		"activeTab",
 		"contextMenus",
 		"<all_urls>",
 		"tabs",
-		"menus"
+		"menus",
+		"storage"
 	],
 	"commands": {
 		"getSelectedPedia": {

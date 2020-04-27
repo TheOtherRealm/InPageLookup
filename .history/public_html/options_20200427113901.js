@@ -1,16 +1,12 @@
 function saveOptions(e) {
-	console.log(e, document.querySelector("#wikipediaKeyCombo").value);
+	e.preventDefault();
+	console
 	browser.storage.sync.set({
 		wikipediaKeyCombo: document.querySelector("#wikipediaKeyCombo").value,
 		wiktionaryKeyCombo: document.querySelector("#wiktionaryKeyCombo").value
 	});
-	e.preventDefault();
 }
 function restoreOptions() {
-	var storageItem = browser.storage.managed.get('colour');
-	storageItem.then((res) => {
-
-	});
 	function setCurrentChoice(result) {
 		updateShortcut("getSelectedPedia", document.querySelector("#wikipediaKeyCombo").value);
 		updateShortcut("getSelectedTionary", document.querySelector("#wiktionaryKeyCombo").value);
