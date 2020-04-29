@@ -7,7 +7,6 @@ async function updateUI(commandNames) {
 	commandNames.forEach(commandName => {
 		for (command of commands) {
 			if (command.name === commandName) {
-				console.log(commandName);
 				document.querySelector('#' + commandName).value = command.shortcut;
 			}
 		}
@@ -17,10 +16,9 @@ async function updateUI(commandNames) {
  * Update the shortcut based on the value in the textbox.
  */
 async function updateShortcut(commandName) {
-	console.log(document.forms['form']);
 	await browser.commands.update({
 		name: commandName,
-		shortcut: JSON.parse(document.forms['form'])
+		shortcut: document.querySelector('#' + commandName).value
 	});
 }
 /**

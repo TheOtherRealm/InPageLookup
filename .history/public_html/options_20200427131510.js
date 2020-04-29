@@ -1,39 +1,37 @@
-const commandNames = ["getSelectedPedia", "getSelectedTionary"];
+const commandNames=["getSelectedPedia","getSelectedTionary"];
 /**
  * Update the UI: set the value of the shortcut textbox.
  */
 async function updateUI(commandNames) {
 	let commands = await browser.commands.getAll();
-	commandNames.forEach(commandName => {
+	for(commandName in commandNames){
 		for (command of commands) {
 			if (command.name === commandName) {
-				console.log(commandName);
 				document.querySelector('#' + commandName).value = command.shortcut;
 			}
 		}
-	});
+	}
 }
 /**
  * Update the shortcut based on the value in the textbox.
  */
 async function updateShortcut(commandName) {
-	console.log(document.forms['form']);
 	await browser.commands.update({
 		name: commandName,
-		shortcut: JSON.parse(document.forms['form'])
+		shortcut: document.querySelector('#' + commandName).value
 	});
 }
 /**
  * Reset the shortcut and update the textbox.
  */
-async function resetShortcut() {
+async function resetShortcut(commandName) {
 	await browser.commands.reset(commandName);
-	updateUI(commandNames);
+	updateUI();
 }
 /**
  * Update the UI when the page loads.
  */
-document.addEventListener('DOMContentLoaded', updateUI(commandNames));
+document.addEventListener('DOMContentLoaded', updateUI);
 /**
  * Handle update and reset button clicks
  */

@@ -17,7 +17,6 @@ async function updateUI(commandNames) {
  * Update the shortcut based on the value in the textbox.
  */
 async function updateShortcut(commandName) {
-	console.log(document.forms['form']);
 	await browser.commands.update({
 		name: commandName,
 		shortcut: JSON.parse(document.forms['form'])
