@@ -1,0 +1,1 @@
+{ "options": [{ "name": "getSelectedPedia", "description": "Look up a highlighted word or phrase in Wikipedia", "shortcut": "Ctrl+Shift+1" }, { "name": "getSelectedTionary", "description": "Look up a highlighted word or phrase in Wiktionary", "shortcut": "Ctrl+Shift+2" }, { "name": "removeSelected", "description": "Hide the iframe", "shortcut": "Ctrl+Shift+~" }] }

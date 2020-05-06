@@ -8,14 +8,14 @@
 </head>
 
 <body>
-	<form>
-		<p><label>Wikipedia key combo: <input type="text" id="getSelectedPedia"></label></p>
-		<p><label>Wiktionary key combo: <input type="text" id="getSelectedTionary"></label></p>
+    <form id='options' name='options'><!--value="Ctrl+Shift+1" -->
+		<p><label for="getSelectedPedia">Wikipedia key combo (Default: Ctrl+Shift+1): </label><input type="text"  id="getSelectedPedia" name="getSelectedPedia"></p>
+        <p><label for="getSelectedTionary">Wiktionary key combo (Default: Ctrl+Shift+2):</label><input type="text" id="getSelectedTionary" name="getSelectedTionary"></p>
+        <p><label for="removeSelected">Close Wiki key combo (Default: Ctrl+Shift+~)</label><input type="text" id="removeSelected" name="removeSelected"></p>
 		<button id='update'>Save</button>
-		<button id="reset">Reset  keyboard shortcut</button>
-	</form>
-
-	<script src="../options.js"></script>
+		<button id="reset">Reset keyboard shortcut</button>
+    </form>
+    <script src="../options.js"></script>
 </body>
 
 </html>

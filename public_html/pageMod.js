@@ -17,18 +17,59 @@
 	var selObj = '';
 	selObj = window.getSelection();
 	var nOfLookups = 0;
+	var ks = [];
+	const isArray = Array.isArray
+	const arrayCompare = f => ([x, ...xs]) => ([y, ...ys]) => x === undefined && y === undefined ? true : Boolean(f(x)(y)) && arrayCompare(f)(xs)(ys);
+	// const arrayDeepCompare = f => arrayCompare(a => b => isArray(a) && isArray(b) ? arrayDeepCompare(f)(a)(b) : f(a)(b))
+	const aMatch = typed => stored => typed == stored;
+	const arrayAMatch = arrayCompare(aMatch);
+	// function resetShortcut() {
+	// 	var o = JSON.parse(JSON.stringify(options));
+	// 	console.log({ "options": o });
+	// 	browser.storage.local.set({ "options": o })
+	// 		.then(updateUI, onError)
+	// }
+	var rightKeys = [];
+	var options = browser.storage.local.get('options');
+	options.then(combo, error);
+	function combo(opt) {
+		console.log(opt);
+		// if(Object.keys(opt).length === 0 && opt.constructor === Object){
+		// 	resetShortcut();
+		// }
+		opt.options.forEach((obj) => {
+			rightKeys[obj.name] = obj.shortcut.split('+');
+		});
+	}
+	function error(e) {
+		console.log(e, "error");
+	}
 	$(document).keydown(function (e) {
-		if (e.ctrlKey && e.shiftKey && e.which === 49) {
+		if (!ks.includes(e.key)) {
+			ks.push(e.key);
+		}
+		let keyTest = arrayAMatch(rightKeys['removeSelected'])(ks);
+		console.log(rightKeys['removeSelected'], ks, keyTest);
+		if (arrayAMatch(rightKeys['getSelectedPedia'])(ks)) {
+			console.log(e.key);
+			// ks = [];
 			getSelectedPedia();
 		}
-		if (e.ctrlKey && e.shiftKey && e.which === 50) {
+		else if (arrayAMatch(rightKeys['getSelectedTionary'])(ks)) {
+			// ks = [];
 			getSelectedTionary();
 		}
-		if (e.ctrlKey && e.shiftKey && e.which === 192) {
+		else if (arrayAMatch(rightKeys['removeSelected'])(ks)) {
+			// ks = [];
 			closeWiki();
 		}
+	})
+	$(document).keyup(function (e) {
+		console.log(rightKeys['getSelectedPedia'], ks);
+		ks.pop();
 	});
-	var getSelectedPedia = function (c) {
+	var getSelectedPedia = function () {
+		console.log('selObj');
 		selObj = window.getSelection();
 		nOfLookups++;
 		$('.wikiWrapper').append('<div class="wikiAddonDivRap" id="' + nOfLookups + '" style="position: fixed;  top:' + (nOfLookups * 10) + 'px;left:' + (nOfLookups * 10) + 'px"">' +
@@ -66,15 +107,17 @@
 	//handle menu button pressing
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
-			console.log('75', request, sendResponse);
-			if (request.wiki === "getSelectedPedia") {
-				getSelectedPedia();
-			}
-			if (request.wiki === "getSelectedTionary") {
-				getSelectedTionary();
-			}
-			if (request.wiki === "closeWiki") {
-				closeWiki();
+			console.log('106', request, sender, sendResponse);
+			if (document.activeElement) {
+				if (request.wiki === "getSelectedPedia") {
+					getSelectedPedia();
+				}
+				if (request.wiki === "getSelectedTionary") {
+					getSelectedTionary();
+				}
+				if (request.wiki === "closeWiki") {
+					closeWiki();
+				}
 			}
 		});
 	//remove the iframe when the key combinations are pressed or the 'X' button is pressed
