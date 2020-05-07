@@ -30,7 +30,8 @@
 			"js": [
 				"/node_modules/jquery/dist/jquery.min.js",
 				"/js/jquery-ui.min.js",
-				"/pageMod.js"
+				"/pageMod.js",
+				"/options.js"
 			],
 			"css": [
 				"css/stylsht.css",

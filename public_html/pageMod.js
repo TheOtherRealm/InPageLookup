@@ -18,25 +18,16 @@
 	selObj = window.getSelection();
 	var nOfLookups = 0;
 	var ks = [];
-	const isArray = Array.isArray
 	const arrayCompare = f => ([x, ...xs]) => ([y, ...ys]) => x === undefined && y === undefined ? true : Boolean(f(x)(y)) && arrayCompare(f)(xs)(ys);
-	// const arrayDeepCompare = f => arrayCompare(a => b => isArray(a) && isArray(b) ? arrayDeepCompare(f)(a)(b) : f(a)(b))
 	const aMatch = typed => stored => typed == stored;
 	const arrayAMatch = arrayCompare(aMatch);
-	// function resetShortcut() {
-	// 	var o = JSON.parse(JSON.stringify(options));
-	// 	console.log({ "options": o });
-	// 	browser.storage.local.set({ "options": o })
-	// 		.then(updateUI, onError)
-	// }
 	var rightKeys = [];
 	var options = browser.storage.local.get('options');
 	options.then(combo, error);
 	function combo(opt) {
-		console.log(opt);
-		// if(Object.keys(opt).length === 0 && opt.constructor === Object){
-		// 	resetShortcut();
-		// }
+		if(Object.keys(opt).length === 0 && opt.constructor === Object){
+			resetShortcut();
+		}
 		opt.options.forEach((obj) => {
 			rightKeys[obj.name] = obj.shortcut.split('+');
 		});
@@ -48,24 +39,17 @@
 		if (!ks.includes(e.key)) {
 			ks.push(e.key);
 		}
-		let keyTest = arrayAMatch(rightKeys['removeSelected'])(ks);
-		console.log(rightKeys['removeSelected'], ks, keyTest);
 		if (arrayAMatch(rightKeys['getSelectedPedia'])(ks)) {
-			console.log(e.key);
-			// ks = [];
 			getSelectedPedia();
 		}
 		else if (arrayAMatch(rightKeys['getSelectedTionary'])(ks)) {
-			// ks = [];
 			getSelectedTionary();
 		}
 		else if (arrayAMatch(rightKeys['removeSelected'])(ks)) {
-			// ks = [];
 			closeWiki();
 		}
 	})
 	$(document).keyup(function (e) {
-		console.log(rightKeys['getSelectedPedia'], ks);
 		ks.pop();
 	});
 	var getSelectedPedia = function () {
@@ -81,7 +65,7 @@
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
 			$('.removeIconBtn').click(function () {
-				nOfLookups--;
+				// nOfLookups--;
 				closeWiki();
 			});
 		});
@@ -98,7 +82,7 @@
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
 			$('.removeIconBtn').click(function () {
-				nOfLookups--;
+				// nOfLookups--;
 				closeWiki();
 			});
 		});
@@ -131,7 +115,8 @@
 		if ($('.wikiWrapper>*').length <= 0) {
 			parent.postMessage('closeWiki', '*');
 		} else {
-			$('.wikiWrapper>*').remove();
+			console.log(nOfLookups,$('.wikiWrapper #'+nOfLookups+' *').parent());
+			$('.wikiWrapper #'+nOfLookups+' *').parent().remove();
 			nOfLookups--;
 		}
 	};
