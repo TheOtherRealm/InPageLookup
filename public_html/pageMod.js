@@ -25,11 +25,16 @@
 	var options = browser.storage.local.get('options');
 	options.then(combo, error);
 	function combo(opt) {
-		if(Object.keys(opt).length === 0 && opt.constructor === Object){
+		if (Object.keys(opt).length === 0 && opt.constructor === Object) {
 			resetShortcut();
 		}
 		opt.options.forEach((obj) => {
 			rightKeys[obj.name] = obj.shortcut.split('+');
+			rightKeys[obj.name].forEach((srtcut) => {
+				if (srtcut == "Ctrl") {
+					rightKeys[obj.name][srtcut] = "Control";
+				}
+			});
 		});
 	}
 	function error(e) {
@@ -111,7 +116,7 @@
 		if ($('.wikiWrapper>*').length <= 0) {
 			parent.postMessage('closeWiki', '*');
 		} else {
-			$('.wikiWrapper #'+nOfLookups+' *').parent().remove();
+			$('.wikiWrapper #' + nOfLookups + ' *').parent().remove();
 			nOfLookups--;
 		}
 	};

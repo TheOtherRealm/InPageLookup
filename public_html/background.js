@@ -20,7 +20,7 @@ function onCreated() {
 	if (browser.runtime.lastError) {
 		console.log(`Error: ${browser.runtime.lastError}`);
 	} else {
-		console.log("Lookup prototype div created successfully");
+		console.log("Lookup div created successfully");
 	}
 }
 function onRemoved() {

@@ -17,6 +17,6 @@
 	"author": "Aaron E-J <the at otherrealm.org>",
 	"contributors": [],
 	"dependencies": {
-		"jquery": "3.5.0"
+		"jquery": "3.5.1"
 	}
 }
