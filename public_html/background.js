@@ -47,7 +47,6 @@ browser.menus.create({
  */
 var openWiki = function (frameId, wiki) {
 	browser.tabs.query({ active: true, lastFocusedWindow: true, currentWindow: true }, function (tabs) {
-		console.log(wiki, frameId, tabs[0].id);
 		browser.tabs.sendMessage(tabs[0].id, { wiki: wiki, frameId: frameId, tabId: tabs[0].id }, { frameId: frameId });
 	});
 };
@@ -55,18 +54,9 @@ var openWiki = function (frameId, wiki) {
  * The click event listener, where we perform the appropriate action given the ID of the menu item that was clicked.
  */
 browser.menus.onClicked.addListener((info, tab) => {
-	// console.log(info);
 	wikipedia(info);
 });
-// browser.commands.onCommand.addListener(function (command) {
-// 	console.log(command);
-// 	browser.tabs.query({ active: true, lastFocusedWindow: true, currentWindow: true }, function (tabs) {
-// 		console.log(tabs);
-// 		browser.tabs.sendMessage(tabs[0].id, { wiki: command });
-// 	});
-// });
 var wikipedia = function (info) {
-	console.log(info);
 	switch (info.menuItemId) {
 		case "getSelectedPedia":
 			openWiki(info.frameId, 'getSelectedPedia');
@@ -76,12 +66,3 @@ var wikipedia = function (info) {
 			break;
 	}
 };
-async function logListener(info) {
-	try {
-		let tabInfo = await browser.tabs.get(info.tabId);
-		console.log(tabInfo);
-	} catch (error) {
-		console.error(error);
-	}
-}
-browser.tabs.onActivated.addListener(logListener);

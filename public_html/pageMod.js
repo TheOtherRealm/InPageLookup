@@ -53,7 +53,6 @@
 		ks.pop();
 	});
 	var getSelectedPedia = function () {
-		console.log('selObj');
 		selObj = window.getSelection();
 		nOfLookups++;
 		$('.wikiWrapper').append('<div class="wikiAddonDivRap" id="' + nOfLookups + '" style="position: fixed;  top:' + (nOfLookups * 10) + 'px;left:' + (nOfLookups * 10) + 'px"">' +
@@ -65,7 +64,6 @@
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
 			$('.removeIconBtn').click(function () {
-				// nOfLookups--;
 				closeWiki();
 			});
 		});
@@ -82,7 +80,6 @@
 			$(".wikiAddonDivRap").draggable();
 			$(".wikiAddonDivRap").resizable();
 			$('.removeIconBtn').click(function () {
-				// nOfLookups--;
 				closeWiki();
 			});
 		});
@@ -91,7 +88,6 @@
 	//handle menu button pressing
 	browser.runtime.onMessage.addListener(
 		function (request, sender, sendResponse) {
-			console.log('106', request, sender, sendResponse);
 			if (document.activeElement) {
 				if (request.wiki === "getSelectedPedia") {
 					getSelectedPedia();
@@ -115,7 +111,6 @@
 		if ($('.wikiWrapper>*').length <= 0) {
 			parent.postMessage('closeWiki', '*');
 		} else {
-			console.log(nOfLookups,$('.wikiWrapper #'+nOfLookups+' *').parent());
 			$('.wikiWrapper #'+nOfLookups+' *').parent().remove();
 			nOfLookups--;
 		}

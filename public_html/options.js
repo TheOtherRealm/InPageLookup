@@ -24,7 +24,6 @@ function updateUI() {
  * Update the commands based on the input.
  */
 function updateShortcut() {
-	// console.log(document.forms['options'][commandName].value);
 	const forms = document.querySelectorAll('form');
 	const form = forms[0];
 	let combo = { "options": [] };
@@ -35,7 +34,6 @@ function updateShortcut() {
 				name: commandNames[nOfOpt++],
 				shortcut: input.value
 			});
-			console.log(combo);
 		}
 	})
 	browser.storage.local.set(combo);
@@ -45,7 +43,6 @@ function updateShortcut() {
  */
 function resetShortcut() {
 	var o = JSON.parse(JSON.stringify(options));
-	console.log({ "options": o });
 	browser.storage.local.set({ "options": o })
 		.then(updateUI, onError)
 }
