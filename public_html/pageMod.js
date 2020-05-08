@@ -44,7 +44,6 @@
 		if (!ks.includes(e.code)) {
 			ks.push(e.code);
 		}
-		console.log(ks);
 		if (arrayAMatch(rightKeys['getSelectedPedia'])(ks)) {
 			getSelectedPedia();
 		}
@@ -56,7 +55,6 @@
 		}
 	})
 	$(document).keyup(function (e) {
-		console.log(ks);
 		ks.pop();
 	});
 	var getSelectedPedia = function () {

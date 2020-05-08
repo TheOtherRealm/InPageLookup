@@ -7,7 +7,6 @@
 	$('.keyCodes').keydown(function (e) {
 		e.preventDefault();
 		const keyCodeBox = this.value;
-		console.log(keyCodeBox, this);
 		if(this.value==''){
 			this.value = e.code;
 		}else{
@@ -17,7 +16,6 @@
 	$('#clear').click(function (e) {
 		e.preventDefault();
 		$('.keyCodes').each(function(k){
-			console.log(this.value);
 			this.value = '' 
 		});
 	});
