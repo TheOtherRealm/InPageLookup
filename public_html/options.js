@@ -1,6 +1,6 @@
 (function () {
 	const commandNames = ["getSelectedPedia", "getSelectedTionary", "removeSelected"];
-	const options = [{ "name": "getSelectedPedia", "description": "Look up a highlighted word or phrase in Wikipedia", "shortcut": "Control+Shift+!" }, { "name": "getSelectedTionary", "description": "Look up a highlighted word or phrase in Wiktionary", "shortcut": "Control+Shift+@" }, { "name": "removeSelected", "description": "Hide the iframe", "shortcut": "Control+Shift+~" }];
+	const options = [{ "name": "getSelectedPedia", "description": "Look up a highlighted word or phrase in Wikipedia", "shortcut": "ControlLeft+ShiftLeft+Digit1" }, { "name": "getSelectedTionary", "description": "Look up a highlighted word or phrase in Wiktionary", "shortcut": "ControlLeft+ShiftLeft+Digit2" }, { "name": "removeSelected", "description": "Hide the iframe", "shortcut": "ControlLeft+ShiftLeft+Backquote" }];
 	/**
 	 * Convert a key press into the relevent code
 	 */
@@ -8,7 +8,11 @@
 		e.preventDefault();
 		const keyCodeBox = this.value;
 		console.log(keyCodeBox, this);
+		if(this.value==''){
+			this.value = e.code;
+		}else{
 		this.value = keyCodeBox + '+' + e.code;
+		}
 	});
 	$('#clear').click(function (e) {
 		e.preventDefault();
