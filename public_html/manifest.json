@@ -56,25 +56,25 @@
 	"commands": {
 		"getSelectedPedia": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+1",
-				"linux": "Ctrl+Shift+1",
-				"mac": "Command+Shift+1"
+				"default": "Ctrl+Alt+1",
+				"linux": "Ctrl+Alt+1",
+				"mac": "Command+Alt+1"
 			},
 			"description": "Look up a highlighted word or phrase in Wikipedia"
 		},
 		"getSelectedTionary": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+2",
-				"linux": "Ctrl+Shift+2",
-				"mac": "Command+Shift+2"
+				"default": "Ctrl+Alt+2",
+				"linux": "Ctrl+Alt+2",
+				"mac": "Command+Alt+2"
 			},
 			"description": "Look up a highlighted word or phrase in Wiktionary"
 		},
 		"removeSelected": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+3",
-				"linux": "Ctrl+Shift+3",
-				"mac": "Command+Shift+3"
+				"default": "Ctrl+Alt+3",
+				"linux": "Ctrl+Alt+3",
+				"mac": "Command+Alt+3"
 			},
 			"description": "Hide the iframe"
 		}

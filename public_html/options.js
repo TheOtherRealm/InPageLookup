@@ -1,10 +1,10 @@
 (function () {
 	const commandNames = ["getSelectedPedia", "getSelectedTionary", "removeSelected"];
-	const options = [{ "name": "getSelectedPedia", "description": "Look up a highlighted word or phrase in Wikipedia", "shortcut": "ControlLeft+ShiftLeft+Digit1" }, { "name": "getSelectedTionary", "description": "Look up a highlighted word or phrase in Wiktionary", "shortcut": "ControlLeft+ShiftLeft+Digit2" }, { "name": "removeSelected", "description": "Hide the iframe", "shortcut": "ControlLeft+ShiftLeft+Backquote" }];
+	const options = [{ "name": "getSelectedPedia", "description": "Look up a highlighted word or phrase in Wikipedia", "shortcut": "ControlLeft+AltLeft+Digit1" }, { "name": "getSelectedTionary", "description": "Look up a highlighted word or phrase in Wiktionary", "shortcut": "ControlLeft+AltLeft+Digit2" }, { "name": "removeSelected", "description": "Hide the iframe", "shortcut": "ControlLeft+AltLeft+Backquote" }];
 	/**
 	 * Convert a key press into the relevent code
 	 */
-	$('.keyCodes').keydown(function (e) {
+	$('.keyCodes').on('keydown',function (e) {
 		e.preventDefault();
 		const keyCodeBox = this.value;
 		if(this.value==''){
@@ -13,7 +13,7 @@
 		this.value = keyCodeBox + '+' + e.code;
 		}
 	});
-	$('#clear').click(function (e) {
+	$('#clear').on('click',function (e) {
 		e.preventDefault();
 		$('.keyCodes').each(function(k){
 			this.value = '' 
